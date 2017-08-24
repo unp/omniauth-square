@@ -60,7 +60,7 @@ module OmniAuth
           :redirect_uri => callback_url
         }
 
-        params.merge! client.auth_code.client_params
+        params.merge! client_params
         params.merge! token_params.to_hash(:symbolize_keys => true)
 
         opts = {
@@ -80,6 +80,16 @@ module OmniAuth
           prune!(value) if value.is_a?(Hash)
           value.nil? || (value.respond_to?(:empty?) && value.empty?)
         end
+      end
+
+      ##
+      # @return [Hash]
+      #
+      def client_params
+        {
+          client_id: client.id,
+          client_secret: client.secret
+        }
       end
     end
   end
