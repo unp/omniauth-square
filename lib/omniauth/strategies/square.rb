@@ -10,6 +10,7 @@ module OmniAuth
         :authorize_url => '/oauth2/authorize',
         :token_url     => '/oauth2/token'
       }
+      option :authorize_params, { :session => false }
 
       uid { raw_info['id'] }
 
